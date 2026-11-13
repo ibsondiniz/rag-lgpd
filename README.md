@@ -60,7 +60,7 @@ Com Docker, o modelo de embeddings já vem dentro da imagem:
 
 ```bash
 docker build -t rag-lgpd .
-docker run --rm rag-lgpd
+docker run --rm --network none rag-lgpd   # avaliação da busca, sem internet
 docker run --rm --env-file .env rag-lgpd perguntar "O que é dado pessoal sensível?"
 ```
 

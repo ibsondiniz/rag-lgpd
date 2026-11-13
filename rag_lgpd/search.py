@@ -70,7 +70,8 @@ class Embeddings:
             from fastembed import TextEmbedding
 
             model = TextEmbedding(MODEL)
-            embed = lambda texts: np.array(list(model.embed(texts)))
+            # small batches: the default (256) pads every chunk to the longest one and peaks at ~3 GB
+            embed = lambda texts: np.array(list(model.embed(texts, batch_size=8)))
         self.embed = embed
         texts = [c["text"] for c in chunks]
         key = hashlib.sha256((MODEL + "\n".join(texts)).encode()).hexdigest()[:16]
