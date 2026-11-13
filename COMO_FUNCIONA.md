@@ -53,7 +53,9 @@ A busca acha trechos, mas o resultado é por **artigo** (a melhor nota entre os 
 
 Resultado: embeddings 88% e MRR 0,68; híbrida 79%; BM25 58%.
 
-A lição: "híbrida é sempre melhor" não é regra. Aqui as perguntas usam palavras do dia a dia ("punição", "vazamento", "apagar") e a lei usa termos técnicos ("sanção", "incidente de segurança", "eliminação"). Por isso o BM25 atrapalha mais do que ajuda. Por isso se **mede** antes de escolher.
+A lição: "híbrida é sempre melhor" não é regra. Aqui as perguntas usam palavras do dia a dia ("punição", "vazamento", "apagar") e a lei usa termos técnicos ("sanção", "incidente de segurança", "eliminação"). O BM25 acerta pouco e, na fusão, empurra artigos errados para cima.
+
+A diferença entre híbrida e embeddings é de 2 perguntas em 24, pequena demais para virar regra geral. Com mais perguntas, o resultado pode mudar. Por isso se **mede** antes de escolher, e se mede de novo quando o conjunto cresce.
 
 ## 6. Geração
 
@@ -94,4 +96,4 @@ Isso pode ser feito à mão numa amostra ou com outro LLM como juiz, sempre conf
 - Medir de novo a cada mudança.
 
 **Qual foi o papel da IA?**
-Eu escolhi o tema, as perguntas de avaliação e conferi na lei o artigo esperado de cada uma. O Claude Code ajudou a escrever o código e os testes. Rodei as avaliações e li os erros.
+Eu escolhi o tema. O Claude Code escreveu o código, os testes e as perguntas de avaliação, e conferiu no texto da lei o artigo esperado de cada uma. Revisei a lista de perguntas e li os erros da avaliação.

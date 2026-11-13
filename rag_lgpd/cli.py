@@ -55,7 +55,7 @@ def main(argv=None):
     a.add_argument("--busca", default="embeddings", choices=["embeddings", "hibrida", "bm25"], help="padrão: a que mediu melhor")
     a.add_argument("--provider", default="gemini", choices=["gemini", "ollama", "nenhum"])
     a.add_argument("--modelo")
-    a.add_argument("-k", type=int, default=4, help="quantos artigos mandar ao modelo")
+    a.add_argument("-k", type=int, default=3, help="quantos artigos mandar ao modelo (o recall@3 mede exatamente isso)")
     e = sub.add_parser("avaliar-busca")
     e.add_argument("--saida")
     e.add_argument("-k", type=int, default=3)

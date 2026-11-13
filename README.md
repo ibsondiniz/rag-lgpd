@@ -22,7 +22,9 @@ Antes de pôr um LLM na frente, a busca foi avaliada com 24 perguntas, cada uma 
 | **Embeddings locais** | **88%** | **0,68** |
 | Híbrida (as duas juntas) | 79% | 0,67 |
 
-O BM25 erra quando a pergunta usa palavras diferentes da lei: "punições" contra "sanções", "vazamento" contra "incidente de segurança". Os embeddings comparam o sentido, não a palavra. Juntar as duas buscas piorou aqui, porque o BM25 puxa artigos errados para cima. Por isso a busca padrão é a de embeddings. Os erros de cada busca estão em [reports/busca.md](reports/busca.md).
+O BM25 erra quando a pergunta usa palavras diferentes da lei: "punições" contra "sanções", "vazamento" contra "incidente de segurança". Os embeddings comparam o sentido, não a palavra.
+
+Juntar as duas buscas não ajudou neste conjunto: 19 acertos contra 21 dos embeddings sozinhos. Com só 24 perguntas, essa diferença é pequena. Mesmo assim, a busca padrão ficou a de embeddings, que mediu melhor. Os erros de cada busca estão em [reports/busca.md](reports/busca.md).
 
 ## Como rodar
 
@@ -59,6 +61,6 @@ Os testes não baixam o modelo nem chamam LLM. Um "embedder" de brinquedo (palav
 
 ## Autoria
 
-Feito por Ibson Diniz com auxílio do Claude Code, a IA de programação da Anthropic. Eu escolhi as perguntas de avaliação, conferi os artigos esperados na lei e revisei e testei o código. As respostas não são orientação jurídica.
+Feito por Ibson Diniz com auxílio do Claude Code, a IA de programação da Anthropic. As perguntas de avaliação e o artigo esperado de cada uma estão em [data/perguntas.jsonl](data/perguntas.jsonl); cada artigo esperado foi conferido no texto da lei. As respostas não são orientação jurídica.
 
 Licença [MIT](LICENSE).
