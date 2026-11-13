@@ -1,0 +1,38 @@
+[project]
+name = "rag-lgpd"
+version = "0.1.0"
+description = "Question answering over Brazil's data protection law (LGPD) with local embeddings and article citations."
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Ibson Diniz", email = "45883903+ibsondiniz@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastembed>=0.9.1",
+    "google-genai>=3.3.0",
+    "numpy>=2.5.4",
+]
+
+[project.scripts]
+rag-lgpd = "rag_lgpd.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "rag_lgpd"
+module-root = ""
+
+[tool.ruff]
+line-length = 140
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
