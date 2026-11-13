@@ -30,13 +30,15 @@ def gemini(question, ctx, model=None):
     if not os.environ.get("GEMINI_API_KEY"):
         raise SystemExit("Defina GEMINI_API_KEY (chave grátis no Google AI Studio) ou use --provider nenhum.")
     client = genai.Client()
-    model = model or os.environ.get("GEMINI_MODEL", "gemini-flash-latest")
-    config = types.GenerateContentConfig(system_instruction=PROMPT, temperature=0)
+    model = model or os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
+    config = types.GenerateContentConfig(system_instruction=PROMPT, temperature=0,
+                                         thinking_config=types.ThinkingConfig(thinking_level="low"),
+                                         http_options=types.HttpOptions(timeout=90_000))
     for attempt in range(4):
         try:
             return client.models.generate_content(model=model, contents=user_message(question, ctx), config=config).text
-        except errors.ClientError as e:
-            if e.code != 429 or attempt == 3:
+        except errors.APIError as e:
+            if e.code not in (429, 503) or attempt == 3:  # rate limit or "high demand": worth waiting
                 raise
             time.sleep(30 * (attempt + 1))
 

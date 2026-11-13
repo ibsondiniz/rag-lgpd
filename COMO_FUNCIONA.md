@@ -96,4 +96,4 @@ Isso pode ser feito à mão numa amostra ou com outro LLM como juiz, sempre conf
 - Medir de novo a cada mudança.
 
 **Qual foi o papel da IA?**
-Eu escolhi o tema. O Claude Code escreveu o código, os testes e as perguntas de avaliação, e conferiu no texto da lei o artigo esperado de cada uma. Revisei a lista de perguntas e li os erros da avaliação.
+Eu escolhi o tema. O Claude Code escreveu o código, os testes e as perguntas de avaliação, e conferiu no texto da lei o artigo esperado de cada uma.

@@ -12,6 +12,24 @@ O modelo de linguagem só vê os artigos que a busca encontrou e é instruído a
 
 O texto da lei vem da página oficial do Planalto, já consolidado com as alterações de 2019. Textos de lei são de domínio público.
 
+## Exemplo real
+
+```
+$ rag-lgpd perguntar "Quais são as punições para quem descumpre a lei?"
+Quem descumpre a lei fica sujeito a diversas sanções administrativas aplicáveis pela autoridade nacional
+(Art. 52, caput). As punições incluem advertência com prazo para correção, multa simples de até 2% do
+faturamento limitada a R$ 50.000.000,00 por infração, e multa diária (Art. 52, I, II e III). Também podem
+ser aplicadas a publicização da infração, o bloqueio ou a eliminação dos dados pessoais afetados
+(Art. 52, IV, V e VI). Além disso, a lei prevê a suspensão parcial do banco de dados, a suspensão do
+exercício da atividade de tratamento e a proibição parcial ou total dessas atividades (Art. 52, X, XI e XII).
+
+Isto não é orientação jurídica.
+
+Artigos consultados: Art. 54, Art. 52, Art. 55-J
+```
+
+A pergunta diz "punições", mas a lei diz "sanções", e mesmo assim a busca achou o Art. 52. Os incisos citados conferem com o texto da lei; os incisos VII a IX foram vetados, por isso a resposta pula do VI para o X. Resposta gerada pelo `gemini-3.5-flash` no plano grátis.
+
 ## A busca foi medida
 
 Antes de pôr um LLM na frente, a busca foi avaliada com 24 perguntas, cada uma com o artigo certo marcado à mão:
@@ -36,7 +54,7 @@ cp .env.example .env                                 # cole a chave grátis do G
 uv run --env-file .env rag-lgpd perguntar "Quais são as punições para quem descumpre a lei?"
 ```
 
-O modelo que gera a resposta é plugável: `--provider gemini` (padrão, plano grátis), `--provider ollama` (modelo local) ou `--provider nenhum`.
+O modelo que gera a resposta é plugável: `--provider gemini` (padrão: `gemini-3.5-flash`, plano grátis), `--provider ollama` (modelo local) ou `--provider nenhum`.
 
 Com Docker, o modelo de embeddings já vem dentro da imagem:
 
